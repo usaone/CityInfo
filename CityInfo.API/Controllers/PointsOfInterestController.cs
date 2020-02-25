@@ -50,7 +50,7 @@ namespace CityInfo.API.Controllers
         [HttpPost]
         public IActionResult CreatePointOfInterest(int cityId, [FromBody] PointOfInterestForCreatingDto pointOfInterest)
         {
-            if (pointOfInterest.Name == null)
+            if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
