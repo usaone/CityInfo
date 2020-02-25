@@ -55,6 +55,9 @@ namespace CityInfo.API.Controllers
                 ModelState.AddModelError(
                     "Description",
                     "The provided description should be different from the name.");
+                ModelState.AddModelError(
+                    "Name",
+                    "The name and description cannot be the same.");
             }
 
             if (!ModelState.IsValid)
