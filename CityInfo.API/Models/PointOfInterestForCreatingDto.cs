@@ -8,7 +8,7 @@ namespace CityInfo.API.Models
 {
     public class PointOfInterestForCreatingDto
     {
-        [Required]
+        [Required(ErrorMessage = "A value is required for name with a maximum length of 50 characters.")]
         [MaxLength(50)]
         public string Name { get; set; }
 
