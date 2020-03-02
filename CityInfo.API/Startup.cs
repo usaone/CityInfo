@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CityInfo.API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -21,7 +22,23 @@ namespace CityInfo.API
                 .AddMvcOptions(o => 
                 {
                     o.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter());
-                });
+                })
+                //Below AddJsonOptions returns output in Pascal casing - for example "PointsOfInterest" instead of "pointsOfInterest"
+                //.AddJsonOptions(o =>
+                //{
+                //    if (o.SerializerSettings.ContractResolver != null)
+                //    {
+                //        var castedResolver = o.SerializerSettings.ContractResolver as DefaultContractResolver;
+                //        castedResolver.NamingStrategy = null;
+                //    }
+                //})
+                ;
+
+            //services.AddTransient();
+            //services.AddScoped();
+            //services.AddSingleton();
+
+            services.AddTransient<LocalMailService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
