@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace CityInfo.API.Services
 {
-    public class LocalMailService : IMailService
+    public class CloudMailService : IMailService
     {
         private readonly IConfiguration _configuration;
 
-        public LocalMailService(IConfiguration configuration)
+        public CloudMailService(IConfiguration configuration)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }
@@ -19,9 +19,10 @@ namespace CityInfo.API.Services
         public void Send(string subject, string message)
         {
             // send mail - output to debug window
-            Debug.WriteLine($"Mail from {_configuration["mailSettings:mailFromAddress"]} to {_configuration["mailSettings:mailToAddress"]}, with LocalMailService.");
+            Debug.WriteLine($"Mail from {_configuration["mailSettings:mailFromAddress"]} to {_configuration["mailSettings:mailToAddress"]}, with CloudMailService.");
             Debug.WriteLine($"Subject: {subject}");
             Debug.WriteLine($"Message: {message}");
+            Debug.WriteLine($"Additional info: No additional info here.");
         }
     }
 }
