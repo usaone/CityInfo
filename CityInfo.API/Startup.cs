@@ -54,7 +54,7 @@ namespace CityInfo.API
             }
             else
             {
-                app.UseExceptionHandler();
+                //app.UseExceptionHandler();
                 /*  Using .net core 2.1, the above line app.UseExceptionHandler() in my Startup.cs class in my API causes the 
                  *  following error to occur when we start the app:
 
@@ -72,10 +72,12 @@ namespace CityInfo.API
                     The problem went away with one of the following lines:
                     app.UseExceptionHandler("/");
                     app.UseExceptionHandler("/error");
+                    Ref: https://github.com/JosephWoodward/GlobalExceptionHandlerDotNet/issues/18
 
                     I need to understand why. March 3, 2020 11:42 pm.
 
                 */
+                app.UseExceptionHandler("/error");
             }
 
             app.UseStatusCodePages();
