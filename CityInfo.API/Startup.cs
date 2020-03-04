@@ -34,9 +34,9 @@ namespace CityInfo.API
                 //})
                 ;
 
-            //services.AddTransient();
-            //services.AddScoped();
-            //services.AddSingleton();
+            //services.AddTransient(); - create each time object is requested - best for light weight stateless services
+            //services.AddScoped(); - created once per request
+            //services.AddSingleton(); - created first time they are requested and subsequently requests use the same object 
 
 #if DEBUG
             services.AddTransient<IMailService, LocalMailService>();
