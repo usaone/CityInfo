@@ -22,7 +22,6 @@ namespace CityInfo.API.Services
             Debug.WriteLine($"Mail from {_configuration["mailSettings:mailFromAddress"]} to {_configuration["mailSettings:mailToAddress"]}, with LocalMailService.");
             Debug.WriteLine($"Subject: {subject}");
             Debug.WriteLine($"Message: {message}");
-            Debug.WriteLine($"Additional info: The physical address is: \n{_configuration["address:line1"]}, {_configuration["address:city"]} {_configuration["address:state"]} {_configuration["address:zip"]}");
         }
     }
 }
