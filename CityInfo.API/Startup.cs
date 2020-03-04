@@ -54,29 +54,6 @@ namespace CityInfo.API
             }
             else
             {
-                //app.UseExceptionHandler();
-                /*  Using .net core 2.1, the above line app.UseExceptionHandler() in my Startup.cs class in my API causes the 
-                 *  following error to occur when we start the app:
-
-                    System.InvalidOperationException: An error occurred when configuring the exception handler 
-                    middleware. Either the 'ExceptionHandlingPath' or the 'ExceptionHandler' option must be 
-                    set in 'UseExceptionHandler()'.
-                    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware..ctor(RequestDelegate next, ILoggerFactory loggerFactory, IOptions`1 options, DiagnosticSource diagnosticSource)
-                    --- End of stack trace from previous location where exception was thrown ---
-                    at Microsoft.Extensions.Internal.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
-                    at Microsoft.Extensions.Internal.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
-                    at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.<>c__DisplayClass4_0.<UseMiddleware>b__0(RequestDelegate next)
-                    at Microsoft.AspNetCore.Builder.Internal.ApplicationBuilder.Build()
-                    at Microsoft.AspNetCore.Hosting.Internal.WebHost.BuildApplication()
-
-                    The problem went away with one of the following lines:
-                    app.UseExceptionHandler("/");
-                    app.UseExceptionHandler("/error");
-                    Ref: https://github.com/JosephWoodward/GlobalExceptionHandlerDotNet/issues/18
-
-                    I need to understand why. March 3, 2020 11:42 pm.
-
-                */
                 app.UseExceptionHandler("/error");
             }
 
