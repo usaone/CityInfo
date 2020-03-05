@@ -15,7 +15,7 @@ namespace CityInfo.API.Contexts
         public CityInfoContext(DbContextOptions<CityInfoContext> options)
             : base(options)
         {
-            Database.EnsureCreated();
+            //Database.EnsureCreated(); Not required when Migrations Added
         }
 
         //// One way to provide the connection string to the DbContext is as follows

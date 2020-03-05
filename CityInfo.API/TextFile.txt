@@ -1,0 +1,2 @@
+﻿Open Package Manager Console and execute the following command
+PM> Add-Migration CityInfoDBInitialMigration
