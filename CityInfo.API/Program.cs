@@ -22,7 +22,10 @@ namespace CityInfo.API
             try
             {
                 logger.Info("Initializing application...");
-                CreateWebHostBuilder(args).Build().Run();
+                var host = CreateWebHostBuilder(args).Build();
+
+                // run the web app
+                host.Run();
             }
             catch (Exception ex)
             {
