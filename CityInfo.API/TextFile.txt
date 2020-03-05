@@ -1,11 +1,9 @@
-﻿Add description for PointOfInterest entity and execute Add-Migration in package manager to include the change 
-in the migrations.
+﻿Add sample data to see the database via CityInfoContext and execute Add-Migration in package manager to 
+include the sample data in the migrations.
 
-PM> Add-Migration CityInfoDBAddPointOfIntDescription
-The EF Core tools version '2.1.1-rtm-30846' is older than that of the runtime '2.1.14-servicing-32113'. 
-Update the tools for the latest features and bug fixes.
+PM> Add-Migration SampleData
+The EF Core tools version '2.1.1-rtm-30846' is older than that of the runtime '2.1.14-servicing-32113'. Update the tools for the latest features and bug fixes.
 Microsoft.EntityFrameworkCore.Infrastructure[10403]
-      Entity Framework Core 2.1.14-servicing-32113 initialized 'CityInfoContext' using 
-      provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+      Entity Framework Core 2.1.14-servicing-32113 initialized 'CityInfoContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
 To undo this action, use Remove-Migration.
-PM>
+PM> 
