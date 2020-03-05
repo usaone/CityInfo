@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CityInfo.API.Contexts;
 using CityInfo.API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
 
@@ -14,6 +17,12 @@ namespace CityInfo.API
 {
     public class Startup
     {
+        private readonly IConfiguration _configuration;
+
+        public Startup(IConfiguration configuration)
+        {
+            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+        }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -34,15 +43,20 @@ namespace CityInfo.API
                 //})
                 ;
 
-            //services.AddTransient();
-            //services.AddScoped();
-            //services.AddSingleton();
+            //services.AddTransient(); - create each time object is requested - best for light weight stateless services
+            //services.AddScoped(); - created once per request
+            //services.AddSingleton(); - created first time they are requested and subsequently requests use the same object 
 
 #if DEBUG
             services.AddTransient<IMailService, LocalMailService>();
 #else
             services.AddTransient<IMailService, CloudMailService>();
 #endif
+            var connectionString = _configuration["connectionStrings:cityInfoDBConnectionString"];
+            services.AddDbContext<CityInfoContext>(o => 
+            {
+                o.UseSqlServer(connectionString);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,29 +68,6 @@ namespace CityInfo.API
             }
             else
             {
-                //app.UseExceptionHandler();
-                /*  Using .net core 2.1, the above line app.UseExceptionHandler() in my Startup.cs class in my API causes the 
-                 *  following error to occur when we start the app:
-
-                    System.InvalidOperationException: An error occurred when configuring the exception handler 
-                    middleware. Either the 'ExceptionHandlingPath' or the 'ExceptionHandler' option must be 
-                    set in 'UseExceptionHandler()'.
-                    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware..ctor(RequestDelegate next, ILoggerFactory loggerFactory, IOptions`1 options, DiagnosticSource diagnosticSource)
-                    --- End of stack trace from previous location where exception was thrown ---
-                    at Microsoft.Extensions.Internal.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
-                    at Microsoft.Extensions.Internal.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
-                    at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.<>c__DisplayClass4_0.<UseMiddleware>b__0(RequestDelegate next)
-                    at Microsoft.AspNetCore.Builder.Internal.ApplicationBuilder.Build()
-                    at Microsoft.AspNetCore.Hosting.Internal.WebHost.BuildApplication()
-
-                    The problem went away with one of the following lines:
-                    app.UseExceptionHandler("/");
-                    app.UseExceptionHandler("/error");
-                    Ref: https://github.com/JosephWoodward/GlobalExceptionHandlerDotNet/issues/18
-
-                    I need to understand why. March 3, 2020 11:42 pm.
-
-                */
                 app.UseExceptionHandler("/error");
             }
 
