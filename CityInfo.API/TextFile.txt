@@ -1,9 +1,20 @@
-﻿Add sample data to see the database via CityInfoContext and execute Add-Migration in package manager to 
-include the sample data in the migrations.
+﻿Object-Relational Mapping (ORM) is a technique that lets you query and 
+manipulate data from a database using an object-oriented paradigm.
 
-PM> Add-Migration SampleData
-The EF Core tools version '2.1.1-rtm-30846' is older than that of the runtime '2.1.14-servicing-32113'. Update the tools for the latest features and bug fixes.
-Microsoft.EntityFrameworkCore.Infrastructure[10403]
-      Entity Framework Core 2.1.14-servicing-32113 initialized 'CityInfoContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
-To undo this action, use Remove-Migration.
-PM> 
+Entity Framework Core is a lightweight, extensible, and cross-platform
+version of Entity Framework.
+
+Use annotations on entity classes to define primary and foreign keys,
+required fields, etc.
+
+DbContext represents a session with the database and can be used to query
+and save instances of entities.
+
+Migrations allow us to provide code to change the database from one 
+version to another.
+
+Use environment variables for safer storage of sensitive data.
+
+Seeding the database is providing it with the data to start with.
+ - HasData method
+ - Add-Migration after adding data
