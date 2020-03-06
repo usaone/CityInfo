@@ -53,6 +53,11 @@ namespace CityInfo.API.Services
             city.PointsOfInterest.Add(pointOfInterest);
         }
 
+        public void UpdatePointOfInterestForCity(int cityId, PointOfInterest pointOfInterest)
+        {
+            // Intentionally left blank for this implementation as EF Core keeps track of entities.
+        }
+
         public bool Save()
         {
             return (_context.SaveChanges() >= 0);

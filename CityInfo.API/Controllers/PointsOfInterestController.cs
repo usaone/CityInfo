@@ -100,6 +100,7 @@ namespace CityInfo.API.Controllers
             var finalPointOfInterest = _mapper.Map<Entities.PointOfInterest>(pointOfInterest);
 
             _cityInfoRepository.AddPointOfInterestForCity(cityId, finalPointOfInterest);
+
             _cityInfoRepository.Save();
 
             var createdPointOfInterestToReturn = _mapper.Map<Models.PointOfInterestDto>(finalPointOfInterest);
@@ -136,6 +137,8 @@ namespace CityInfo.API.Controllers
             }
 
             _mapper.Map(pointOfInterest, pointOfInterestEntity); // This will cause the entity object to be in modified state.
+
+            _cityInfoRepository.UpdatePointOfInterestForCity(cityId, pointOfInterestEntity);
 
             _cityInfoRepository.Save();
 
