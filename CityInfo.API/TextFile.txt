@@ -1,20 +1,16 @@
-﻿Object-Relational Mapping (ORM) is a technique that lets you query and 
-manipulate data from a database using an object-oriented paradigm.
+﻿Using AutoMapper in ASP.NET Core
 
-Entity Framework Core is a lightweight, extensible, and cross-platform
-version of Entity Framework.
+1. Installed NuGet package "AutoMapper.Extensions.Microsoft.DependencyInjection" for ASP.NET Core
+2. Added line "services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());" to Startup.cs
+3. Created a new folder "Profiles" to hold AutoMapper profiles for classes.
+4. Added a class "CityProfile" to the folder have it implement "Profile" from "Using AutoMapper"
+5. Add constructor on CityProfile and add line "CreateMap<Entities.City, Models.CityWithoutPointsOfInterestDto>();"
+	"CreateMap<Entities.City, Models.CityDto>();"
+	Also add a class "PointOfInterestProfile" similar to above and add the following line to the constructor
+	"CreateMap<Entities.PointOfInterest, Models.PointOfInterestDto>();"
+	
+	Note: CreateMap can be added in just one class called "MapperProfiles" implementing "Profile" from AutoMapper.
 
-Use annotations on entity classes to define primary and foreign keys,
-required fields, etc.
-
-DbContext represents a session with the database and can be used to query
-and save instances of entities.
-
-Migrations allow us to provide code to change the database from one 
-version to another.
-
-Use environment variables for safer storage of sensitive data.
-
-Seeding the database is providing it with the data to start with.
- - HasData method
- - Add-Migration after adding data
+6. Open CitiesController and inject "IMapper mapper" in the constructor.
+7. Then use mapper to replace all mapping code with a single line as seen across CitiesController.
+8. Will continue to PointsOfInterestController next.
