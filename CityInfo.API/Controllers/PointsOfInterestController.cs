@@ -97,13 +97,6 @@ namespace CityInfo.API.Controllers
                 return NotFound();
             }
 
-            //// demo purposes - to be improved
-            //var maxPointOfInterestId = CitiesDataStore.Current.Cities
-            //    .SelectMany(c => c.PointsOfInterest)
-            //    .Max(p => p.Id);
-
-            // The 4 commented lines above are no longer required as the database will generate a primary key now.
-
             var finalPointOfInterest = _mapper.Map<Entities.PointOfInterest>(pointOfInterest);
 
             _cityInfoRepository.AddPointOfInterestForCity(cityId, finalPointOfInterest);
@@ -131,20 +124,20 @@ namespace CityInfo.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
-            if (city == null)
+            if (!_cityInfoRepository.CityExists(cityId))
             {
                 return NotFound();
             }
 
-            var pointOfInterestToUpdate = city.PointsOfInterest.FirstOrDefault(p => p.Id == id);
-            if (pointOfInterestToUpdate == null)
+            var pointOfInterestEntity = _cityInfoRepository.GetPointOfInterestForCity(cityId, id);
+            if (pointOfInterestEntity == null)
             {
                 return NotFound();
             }
 
-            pointOfInterestToUpdate.Name = pointOfInterest.Name;
-            pointOfInterestToUpdate.Description = pointOfInterest.Description;
+            _mapper.Map(pointOfInterest, pointOfInterestEntity); // This will cause the entity object to be in modified state.
+
+            _cityInfoRepository.Save();
 
             return NoContent();
         }
