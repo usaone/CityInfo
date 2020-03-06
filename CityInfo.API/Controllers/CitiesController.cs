@@ -27,19 +27,6 @@ namespace CityInfo.API.Controllers
         {
             var cityEntities = _cityInfoRepository.GetCities(); // this is the entity class not the dto class
 
-            //var results = new List<CityWithoutPointsOfInterestDto>();
-
-            //foreach (var cityEntity in cityEntities)
-            //{
-            //    results.Add(new CityWithoutPointsOfInterestDto()
-            //    {
-            //        Id = cityEntity.Id,
-            //        Name = cityEntity.Name,
-            //        Description = cityEntity.Description
-            //    });
-            //}
-
-            //return Ok(results);
             return Ok(_mapper.Map<IEnumerable<CityWithoutPointsOfInterestDto>>(cityEntities));
         }
 
@@ -55,38 +42,10 @@ namespace CityInfo.API.Controllers
 
             if (includePointsOfInterest)
             {
-                //var cityResult = new CityDto()
-                //{
-                //    Id = city.Id,
-                //    Name = city.Name,
-                //    Description = city.Description
-                //};
-
-                //foreach (var poi in city.PointsOfInterest)
-                //{
-                //    cityResult.PointsOfInterest.Add(
-                //            new PointOfInterestDto()
-                //            {
-                //                Id = poi.Id,
-                //                Name = poi.Name,
-                //                Description = poi.Description
-                //            }
-                //        );
-                //}
-
-                //return Ok(cityResult);
                 return Ok(_mapper.Map<CityDto>(city));
             }
             else
             {
-                //var cityResult = new CityWithoutPointsOfInterestDto()
-                //{
-                //    Id = city.Id,
-                //    Name = city.Name,
-                //    Description = city.Description
-                //};
-
-                //return Ok(cityResult);
                 return Ok(_mapper.Map<CityWithoutPointsOfInterestDto>(city));
             }
         }
