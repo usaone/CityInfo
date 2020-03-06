@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CityInfo.API.Services;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,13 @@ namespace CityInfo.API.Controllers
     [Route("api/cities")]
     public class CitiesController : ControllerBase
     {
+        private readonly object _cityInfoRepository;
+
+        public CitiesController(ICityInfoRepository cityInfoRepository)
+        {
+            _cityInfoRepository = cityInfoRepository ?? throw new ArgumentNullException(nameof(cityInfoRepository));
+        }
+
         [HttpGet]
         public IActionResult GetCities()
         {
