@@ -1,1 +1,10 @@
-﻿
+﻿Used for notes along with my commits.
+
+Last commit upon completing the Pluralsight course "Building Your First API with ASP.NET Core" by Kevin Dockx.
+
+Next courses on the list are:
+-----------------------------
+Security ASP.NET Core 3 with OAuth2 and OpenID Connect
+Building a RESTful API with ASP.NET Core 3
+Implementing Advanced RESTful Concerns with ASP.NET Core 3
+Using HttpClient to Consume APIs in .NET Core
