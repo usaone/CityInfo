@@ -32,7 +32,7 @@ namespace CityInfo.API.Services
             return _context.Cities.Where(c => c.Id == cityId).FirstOrDefault();
         }
 
-        public PointOfInterest GetPointOfInterest(int cityId, int pointOfInterestId)
+        public PointOfInterest GetPointOfInterestForCity(int cityId, int pointOfInterestId)
         {
             return _context.PointsOfInterest.Where(p => p.CityId == cityId && p.Id == pointOfInterestId).FirstOrDefault();
         }
