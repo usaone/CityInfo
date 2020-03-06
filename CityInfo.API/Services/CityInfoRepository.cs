@@ -58,6 +58,11 @@ namespace CityInfo.API.Services
             // Intentionally left blank for this implementation as EF Core keeps track of entities.
         }
 
+        public void DeletePointOfInterest(PointOfInterest pointOfInterest)
+        {
+            _context.PointsOfInterest.Remove(pointOfInterest);
+        }
+
         public bool Save()
         {
             return (_context.SaveChanges() >= 0);
