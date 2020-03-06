@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CityInfo.API.Models
 {
-    public class PointOfInterestForCreatingDto
+    public class PointOfInterestForCreateDto
     {
         [Required(ErrorMessage = "A value is required for name with a maximum length of 50 characters.")]
         [MaxLength(50)]
